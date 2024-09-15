@@ -1,3 +1,18 @@
+const tableContact = 'tbl_contact';
+const tblContactColId = 'id';
+const tblContactColName = 'name';
+const tblContactColMobile = 'mobile';
+const tblContactColEmail = 'email';
+const tblContactColAddress = 'address';
+const tblContactColGroup = 'contact_group';
+const tblContactColGender = 'gender';
+const tblContactColWebsite = 'website';
+const tblContactColImage = 'image';
+const tblContactColFavourite = 'favourite';
+const tblContactColDob = 'dob';
+
+
+
 class ContactModel{
   int? id ;
   String name;
@@ -12,6 +27,7 @@ class ContactModel{
   String? dob;
 
   ContactModel({
+    this.id ,
     required this.name,
     required this.mobile,
     required this.email,
@@ -23,4 +39,32 @@ class ContactModel{
     this.favourite =  false,
     this.dob,
   });
+  Map<String ,dynamic>toMap(){
+    final map = <String,dynamic>{
+      tblContactColName : name ,
+      tblContactColGroup : group,
+      tblContactColFavourite : favourite?1:0 ,
+      tblContactColWebsite : website,
+      tblContactColImage : image,
+      tblContactColGender : gender,
+      tblContactColDob : dob ,
+      tblContactColAddress : address ,
+      tblContactColMobile : mobile,
+      tblContactColEmail : email
+    };
+    return map ;
+  }
+
+  factory ContactModel.fromMap(Map<String , dynamic>map)=>ContactModel(
+      name: map[tblContactColId],
+      mobile: map[tblContactColMobile],
+      email:map[tblContactColEmail],
+      address: map[tblContactColAddress],
+      group: map[tblContactColGroup],
+      gender: map[tblContactColGender],
+      website: map[tblContactColWebsite],
+      image: map[tblContactColImage],
+      dob: map[tblContactColDob],
+      favourite: map[tblContactColFavourite]== 0? false:true,
+  );
 }

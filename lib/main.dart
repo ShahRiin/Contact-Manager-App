@@ -2,10 +2,14 @@
 import 'package:contact_manager1/pages/contact_details_page.dart';
 import 'package:contact_manager1/pages/contact_home.dart';
 import 'package:contact_manager1/pages/new_contact.dart';
+import 'package:contact_manager1/provider/contact_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context)=>ContactProvider(),
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
